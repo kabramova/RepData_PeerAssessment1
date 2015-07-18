@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 <style type="text/css">
@@ -71,7 +76,7 @@ ggplot(data=steps_bydate, aes(total_steps)) + geom_histogram(binwidth=steps_rang
     xlab('Number of steps') + ylab('Count') + ggtitle('Total Number of Steps per Day')
 ```
 
-![](PA1_template_files/figure-html/steps_histogram-1.png) 
+![plot of chunk steps_histogram](figure/steps_histogram-1.png) 
 
 Calculate and report the mean and median of the total number of steps taken per day.
 
@@ -104,7 +109,7 @@ intervals <- strptime(steps_byinterval$interval, format="%H%M") # this is more u
 ggplot(data=steps_byinterval, aes(x = intervals, y = steps_byinterval$avg_steps)) + geom_line() + scale_x_datetime(breaks="2 hours", labels = date_format("%H:%M")) + xlab('Time') + ylab('Average number of steps') + ggtitle('Average Daily Activity')
 ```
 
-![](PA1_template_files/figure-html/activity_timeseries-1.png) 
+![plot of chunk activity_timeseries](figure/activity_timeseries-1.png) 
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -161,7 +166,7 @@ ggplot(data=steps_bydate_clean, aes(total_steps)) + geom_histogram(binwidth=step
     xlab('Number of steps') + ylab('Count') + ggtitle('Total Number of Steps per Day')
 ```
 
-![](PA1_template_files/figure-html/steps_histogram_clean-1.png) 
+![plot of chunk steps_histogram_clean](figure/steps_histogram_clean-1.png) 
 
 Calculate the mean and median of the clean dataset after imputing missing data.
 
@@ -184,10 +189,12 @@ kt <- kable(stats)
 print(kt, type="html")
 ```
 
-                   Mean   Median
-------------  ---------  -------
-With NAs        9354.23    10395
-Imputed NAs    10581.01    10395
+
+
+|            |     Mean| Median|
+|:-----------|--------:|------:|
+|With NAs    |  9354.23|  10395|
+|Imputed NAs | 10581.01|  10395|
 
 As can be seen from this table imputing missing data had no effect on the median of the total number of steps per day but it slightly increased the mean.
 
@@ -219,5 +226,5 @@ intervals <- strptime(steps_byweekday$interval, format="%H%M")
 ggplot(data=steps_byweekday, aes(x = intervals, y = avg_steps)) + geom_line() + scale_x_datetime(breaks="3 hours", labels = date_format("%H:%M")) + facet_wrap(~day) + xlab("Time of the day") + ylab("Total number of steps") + ggtitle('Average Daily Activity by Part of the Week')
 ```
 
-![](PA1_template_files/figure-html/weekend_plot-1.png) 
+![plot of chunk weekend_plot](figure/weekend_plot-1.png) 
 
